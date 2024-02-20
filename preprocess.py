@@ -8,11 +8,11 @@ if __name__ == '__main__':
 
     # data (as pandas dataframes)
     X = breast_cancer_wisconsin_original.data.features
-    y = breast_cancer_wisconsin_original.data.targets
+    Y = breast_cancer_wisconsin_original.data.targets
     # count unique values in target
-    print(y.value_counts())
+    print(Y.value_counts())
     # combine features and targets
-    data = pd.concat([X, y], axis=1)
+    data = pd.concat([X, Y], axis=1)
 
     # find missing values
     missing_values = data.isnull().sum()
@@ -20,10 +20,10 @@ if __name__ == '__main__':
     print(f'mode of Bare Nuclei: {data["Bare_nuclei"].mode()}')
 
     # fill missing values with mode
-    data['Bare_nuclei'] = data['Bare_nuclei'].fillna(data['Bare_nuclei'].mode()[0])
+    X['Bare_nuclei'] = X['Bare_nuclei'].fillna(X['Bare_nuclei'].mode()[0])
 
     # slipt data into train and test
-    Xtrain, Xtest, YTrain, Ytest = train_test_split(X, y, test_size=0.2, random_state=42)
+    Xtrain, Xtest, YTrain, Ytest = train_test_split(X,Y, test_size=0.2, random_state=42)
 
     # combine features and targets for train and test
     train = pd.concat([Xtrain, YTrain], axis=1)
