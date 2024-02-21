@@ -25,12 +25,11 @@ W13[2] = 1
 avg_error = 1
 count_epoch = 0
 
-while count_epoch < 10000:
+while count_epoch < 50:
     avg_error = 0
     error = 0
     data = pd.read_csv("train.csv")
     for i in range(len(data)):
-        count_epoch += 1
         X = data.iloc[i, 0:10].tolist()
         desire_output = [1, 1] if X[9] == 2 else [0, 0]
         X[9] = 1
@@ -114,6 +113,7 @@ while count_epoch < 10000:
         print("\nNew weights of node 10 are: %8.3f,%8.3f,%8.3f,%8.3f,%8.3f,%8.3f,%8.3f,%8.3f,%8.3f,%8.3f" % (
             W11[0], W11[1], W11[2], W11[3], W11[4], W11[5], W11[6], W11[7], W11[8], W11[9]))
     avg_error /= len(data)
+    count_epoch += 1
 
 print("\n-------------------End of Training------------------->")
 print("\nAverage Error: ", avg_error)
