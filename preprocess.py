@@ -9,13 +9,16 @@ if __name__ == '__main__':
     # data (as pandas dataframes)
     X = breast_cancer_wisconsin_original.data.features
     Y = breast_cancer_wisconsin_original.data.targets
-    # count unique values in target
-    print(Y.value_counts())
+
+
     # combine features and targets
     data = pd.concat([X, Y], axis=1)
 
     # find missing values
     missing_values = data.isnull().sum()
+    # print record that has missing values
+    print(data[data.isnull().any(axis=1)])
+
     # Bare Nuclei has 16 missing values
     print(f'mode of Bare Nuclei: {data["Bare_nuclei"].mode()}')
 
@@ -30,5 +33,5 @@ if __name__ == '__main__':
     test = pd.concat([Xtest, Ytest], axis=1)
 
     # save as csv
-    train.to_csv('train.csv', index=False)
-    test.to_csv('test.csv', index=False)
+    # train.to_csv('train.csv', index=False)
+    # test.to_csv('test.csv', index=False)
